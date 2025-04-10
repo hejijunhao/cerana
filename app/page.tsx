@@ -4,21 +4,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useState, useEffect } from "react"
 
 export default function Home() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e
-      setMousePosition({ x: clientX, y: clientY })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Navigation */}
@@ -45,46 +32,66 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="flex-1">
+      <main className="flex-1 pt-20">
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <Image
-              src="/Cerana.svg"
-              alt=""
-              fill
-              priority
-              className="object-cover opacity-[0.99]"
-              aria-hidden="true"
-            />
-          </div>
-          {/* Mouse follower */}
-          <div 
-            className="pointer-events-none absolute inset-0 opacity-50 mouse-gradient transition duration-200"
-            style={{
-              background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0,0,0,0.015) 0%, rgba(0,0,0,0.01) 25%, transparent 50%)`
-            }}
-          />
-          
-          <div className="container relative">
-            <div className="max-w-3xl text-white space-y-8 animate-content-fade-in">
-              <h1 className="text-4xl md:text-6xl font-light tracking-tight">
-                Investing in the Asian Century.
-              </h1>
-              <p className="text-lg">
-                But we chose this instead.
-              </p>
+        <section className="py-20">
+          <div className="container space-y-16">
+            <h1 className="text-5xl md:text-7xl font-light tracking-tight max-w-4xl">
+              Since inception:
+            </h1>
+            <div className="flex gap-16">
+              <div className="flex flex-col gap-4 w-[400px]">
+                <div className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg">
+                  <div className="text-sm font-medium text-neutral-500 min-w-[120px]">Ebb & Flow Group</div>
+                  <div className="flex items-baseline gap-6">
+                    <div className="text-xl font-light w-24 text-right">$32M</div>
+                    <div className="text-emerald-600 w-16 text-right">+433%</div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg">
+                  <div className="text-sm font-medium text-neutral-500 min-w-[120px]">Alta Group</div>
+                  <div className="flex items-baseline gap-6">
+                    <div className="text-xl font-light w-24 text-right">undisclosed</div>
+                    <div className="text-emerald-600 w-16 text-right">+685%</div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg">
+                  <div className="text-sm font-medium text-neutral-500 min-w-[120px]">MoneyMatch</div>
+                  <div className="flex items-baseline gap-6">
+                    <div className="text-xl font-light w-24 text-right">undisclosed</div>
+                    <div className="text-emerald-600 w-16 text-right">+312%</div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-4 w-[400px]">
+                <div className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg">
+                  <div className="text-sm font-medium text-neutral-500 min-w-[120px]">Melati Drinks</div>
+                  <div className="flex items-baseline gap-6">
+                    <div className="text-xl font-light w-24 text-right">undisclosed</div>
+                    <div className="text-emerald-600 w-16 text-right">+211%</div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg">
+                  <div className="text-sm font-medium text-neutral-500 min-w-[120px]">BioFieldSolutions</div>
+                  <div className="flex items-baseline gap-6">
+                    <div className="text-xl font-light w-24 text-right">undisclosed</div>
+                    <div className="text-emerald-600 w-16 text-right">+78%</div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg">
+                  <div className="text-sm font-medium text-neutral-500 min-w-[120px]">AskDr</div>
+                  <div className="flex items-baseline gap-6">
+                    <div className="text-xl font-light w-24 text-right">Acquired</div>
+                    <div className="text-emerald-600 w-16 text-right">+12%</div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-400 animate-scroll-fade-in">
-            <div className="w-[1px] h-12 bg-neutral-300" />
-            <p className="text-xs uppercase tracking-widest">Scroll</p>
           </div>
         </section>
 
         {/* Three Column Section */}
-        <section className="py-32">
+        <section className="py-20 border-t border-neutral-100">
           <div className="container">
             <div className="grid md:grid-cols-3 gap-16 md:gap-24">
               {/* Philosophy Column */}

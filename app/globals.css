@@ -11,6 +11,83 @@ body {
     text-wrap: balance;
   }
 
+  /* Mouse follower transition */
+  .mouse-gradient {
+    will-change: background;
+    transition: background 0.15s ease;
+  }
+
+  /* Grid pattern background */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(to right, black 1px, transparent 1px),
+      linear-gradient(to bottom, black 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Animations */
+  @keyframes pulseOut {
+    0% {
+      box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.1);
+    }
+    100% {
+      box-shadow: inset 0 0 150px 150px rgba(0, 0, 0, 0);
+    }
+  }
+
+  @keyframes lineHorizontal {
+    0%, 100% {
+      transform: scaleX(0.1) translateX(-50%);
+      opacity: 0;
+    }
+    50% {
+      transform: scaleX(1) translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes lineVertical {
+    0%, 100% {
+      transform: scaleY(0.1) translateY(-50%);
+      opacity: 0;
+    }
+    50% {
+      transform: scaleY(1) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes cornerPulse {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.2);
+    }
+  }
+
+  .animate-pulse-out {
+    animation: pulseOut 4s ease-out infinite;
+  }
+
+  .animate-line-horizontal > div {
+    animation: lineHorizontal 10s ease-in-out infinite;
+  }
+
+  .animate-line-vertical > div {
+    animation: lineVertical 10s ease-in-out infinite;
+  }
+
+  .animate-corner-pulse {
+    animation: cornerPulse 8s ease-in-out infinite;
+  }
+
   @keyframes gradientSlow {
     0% {
       transform: translate(-50%, -50%) rotate(0deg);

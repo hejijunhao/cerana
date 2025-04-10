@@ -1,9 +1,24 @@
+'use client'
+
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react"
 
 export default function Home() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e
+      setMousePosition({ x: clientX, y: clientY })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Navigation */}
@@ -21,6 +36,9 @@ export default function Home() {
               Cerana Capital
             </span>
           </Link>
+          <span className="absolute left-1/2 -translate-x-1/2 text-sm font-light tracking-widest text-neutral-400">
+            est. 2018
+          </span>
           <Button variant="ghost" size="sm" className="gap-2">
             Contact <ArrowUpRight className="h-4 w-4" />
           </Button>
@@ -30,38 +48,32 @@ export default function Home() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-          {/* Animated background */}
+          {/* Background Image */}
           <div className="absolute inset-0">
-            {/* Base gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-neutral-100 via-white to-neutral-50" />
-            
-            {/* Animated gradients */}
-            <div className="absolute inset-0">
-              {/* Diagonal shimmer */}
-              <div 
-                className="absolute inset-0 animate-gradient-slow"
-                style={{
-                  background: 'linear-gradient(145deg, transparent 0%, rgba(0,0,0,0.03) 40%, transparent 100%)',
-                  transform: 'scale(2)'
-                }}
-              />
-              {/* Horizontal wave */}
-              <div 
-                className="absolute inset-0 animate-gradient-fast"
-                style={{
-                  background: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.02) 20%, rgba(0,0,0,0.02) 40%, transparent 100%)',
-                  transform: 'scale(2)'
-                }}
-              />
-            </div>
+            <Image
+              src="/Cerana.svg"
+              alt=""
+              fill
+              priority
+              className="object-cover opacity-[0.99]"
+              aria-hidden="true"
+            />
           </div>
+          {/* Mouse follower */}
+          <div 
+            className="pointer-events-none absolute inset-0 opacity-50 mouse-gradient transition duration-200"
+            style={{
+              background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0,0,0,0.015) 0%, rgba(0,0,0,0.01) 25%, transparent 50%)`
+            }}
+          />
+          
           <div className="container relative">
-            <div className="max-w-3xl mx-auto text-center space-y-8 animate-content-fade-in">
+            <div className="max-w-3xl text-white space-y-8 animate-content-fade-in">
               <h1 className="text-4xl md:text-6xl font-light tracking-tight">
-                Time is the only true currency.
+                Investing in the Asian Century.
               </h1>
-              <p className="text-neutral-600 text-lg">
-                Investing in ASEAN since 2017.
+              <p className="text-lg">
+                But we chose this instead.
               </p>
             </div>
           </div>

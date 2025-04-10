@@ -29,19 +29,32 @@ export default function Home() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center relative bg-neutral-50 overflow-hidden">
-          {/* Background SVG with animation */}
-          <div className="absolute inset-0 w-full h-full opacity-[0.03] animate-fade-in">
-            <Image
-              src="/Cerana.svg"
-              alt=""
-              fill
-              priority
-              className="object-contain scale-150"
-              aria-hidden="true"
-            />
+        <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+          {/* Animated background */}
+          <div className="absolute inset-0">
+            {/* Base gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-neutral-100 via-white to-neutral-50" />
+            
+            {/* Animated gradients */}
+            <div className="absolute inset-0">
+              {/* Diagonal shimmer */}
+              <div 
+                className="absolute inset-0 animate-gradient-slow"
+                style={{
+                  background: 'linear-gradient(145deg, transparent 0%, rgba(0,0,0,0.03) 40%, transparent 100%)',
+                  transform: 'scale(2)'
+                }}
+              />
+              {/* Horizontal wave */}
+              <div 
+                className="absolute inset-0 animate-gradient-fast"
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.02) 20%, rgba(0,0,0,0.02) 40%, transparent 100%)',
+                  transform: 'scale(2)'
+                }}
+              />
+            </div>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-neutral-50/50 to-neutral-50/95" aria-hidden="true" />
           <div className="container relative">
             <div className="max-w-3xl mx-auto text-center space-y-8 animate-content-fade-in">
               <h1 className="text-4xl md:text-6xl font-light tracking-tight">
